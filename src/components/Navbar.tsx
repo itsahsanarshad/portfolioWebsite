@@ -1,56 +1,147 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-neutral-900/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(153,247,255,0.08)]">
-      <div className="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass-nav shadow-[0_8px_32px_0_rgba(114,220,255,0.06)]" : "bg-transparent"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        {/* Logo */}
         <Link
-          href="#"
-          className="text-xl font-bold bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent font-headline tracking-tight"
+          href="/"
+          className="text-xl font-bold gradient-text font-headline tracking-tight select-none"
         >
           Ahsan.dev
         </Link>
-        <div className="hidden md:flex items-center space-x-8">
-          <Link
-            href="#home"
-            className="text-primary font-bold border-b-2 border-primary pb-1 font-headline tracking-tight"
-          >
-            Home
-          </Link>
-          <Link
-            href="#about"
-            className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight"
-          >
-            About
-          </Link>
-          <Link
-            href="#projects"
-            className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight"
-          >
-            Projects
-          </Link>
-          <Link
-            href="#experience"
-            className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight"
-          >
-            Experience
-          </Link>
-          <Link
-            href="#contact"
-            className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight"
-          >
-            Contact
-          </Link>
+
+        {/* Desktop nav links */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`text-sm font-headline tracking-tight transition-colors duration-200 ${
+                  isActive
+                    ? "text-primary border-b-2 border-primary pb-0.5"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </div>
-        <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-white/10 transition-all duration-300 ease-in-out rounded-full scale-95 active:scale-90" aria-label="Toggle dark mode">
-            <span className="material-symbols-outlined text-primary">dark_mode</span>
+
+        {/* Right: Social icons + hamburger */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/itsahsanarshad"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hidden sm:flex p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200"
+          >
+            <span className="material-symbols-outlined text-[20px]">code</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/itsahsanarshad"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hidden sm:flex p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200"
+          >
+            <span className="material-symbols-outlined text-[20px]">group</span>
+          </a>
+
+          {/* Hamburger */}
+          <button
+            className="md:hidden p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span className="material-symbols-outlined">
+              {menuOpen ? "close" : "menu"}
+            </span>
           </button>
-          <button className="md:hidden p-2 text-on-surface-variant" aria-label="Open Menu">
-            <span className="material-symbols-outlined">menu</span>
-          </button>
+        </div>
+      </nav>
+
+      {/* Mobile drawer */}
+      <div
+        className={`md:hidden glass-nav border-t border-outline-variant/20 transition-all duration-300 overflow-hidden ${
+          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-4 py-4 flex flex-col gap-1">
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`px-4 py-3 rounded-lg font-headline text-sm tracking-tight transition-colors duration-200 ${
+                  isActive
+                    ? "bg-surface-container-high text-primary font-semibold"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
+          <div className="flex gap-2 mt-3 pt-3 border-t border-outline-variant/20">
+            <a
+              href="https://github.com/itsahsanarshad"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-on-surface-variant hover:text-primary text-sm transition-colors"
+            >
+              <span className="material-symbols-outlined text-base">code</span>
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/itsahsanarshad"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-on-surface-variant hover:text-primary text-sm transition-colors"
+            >
+              <span className="material-symbols-outlined text-base">group</span>
+              LinkedIn
+            </a>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
