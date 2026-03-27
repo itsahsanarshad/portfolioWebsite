@@ -130,14 +130,14 @@ export const education: EduEntry[] = [
   {
     degree: "MS Computer Science",
     school: "Bahria University",
-    period: "2023 – Present",
+    period: "2025 – Present",
     focus: "Advanced Algorithms, Machine Learning, and Distributed Systems.",
     type: "education",
   },
   {
     degree: "BS Computer Science",
     school: "Bahria University",
-    period: "2019 – 2023",
+    period: "2020 – 2024",
     focus: "Core Computer Science curriculum with a focus on Software Engineering.",
     type: "education",
   },

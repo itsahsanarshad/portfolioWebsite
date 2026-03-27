@@ -45,7 +45,7 @@ export default function ProjectsPage() {
             <div className="group bg-surface-container-low rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-500 border border-outline-variant/10">
               {/* Image placeholder */}
               <div className="h-56 sm:h-72 lg:h-96 w-full bg-surface-container flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent" />
                 <div className="relative z-10 text-center">
                   <span className="material-symbols-outlined text-primary text-[80px] opacity-20">lock</span>
                   <p className="text-on-surface-variant text-sm font-label mt-2 opacity-40">{featured.title}</p>
@@ -112,7 +112,7 @@ export default function ProjectsPage() {
               >
                 {/* Card header with icon */}
                 <div className="h-36 sm:h-44 bg-surface-container flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="material-symbols-outlined text-primary text-[48px] opacity-30 group-hover:opacity-50 transition-opacity">
                     {project.icon || "folder"}
                   </span>

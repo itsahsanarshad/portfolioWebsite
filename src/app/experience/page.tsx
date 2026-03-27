@@ -45,7 +45,7 @@ export default function ExperiencePage() {
 
           <div className="relative">
             {/* Vertical accent line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent hidden sm:block" />
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-linear-to-b from-primary/40 via-primary/10 to-transparent hidden sm:block" />
 
             <div className="flex flex-col gap-6">
               {experience.map((job, i) => (

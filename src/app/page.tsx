@@ -15,8 +15,8 @@ export default function Home() {
 
       {/* ── Background ambient orbs ─────────────────────────── */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="ambient-orb w-[600px] h-[600px] bg-primary/5 top-[-10%] right-[-10%]" />
-        <div className="ambient-orb w-[400px] h-[400px] bg-tertiary/5 bottom-[10%] left-[-5%]" />
+        <div className="ambient-orb w-150 h-150 bg-primary/5 top-[-10%] right-[-10%]" />
+        <div className="ambient-orb w-100 h-100 bg-tertiary/5 bottom-[10%] left-[-5%]" />
       </div>
 
       <main>
@@ -31,12 +31,12 @@ export default function Home() {
               </span>
             </div>
 
-            <h1 className="font-headline font-bold tracking-tighter leading-[1.0] mb-6">
+            <h1 className="font-headline font-bold tracking-tighter leading-none mb-6">
               <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] text-on-surface">
                 Hi, I&apos;m Muhammad Ahsan
               </span>
               <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] mt-2">
-                <span className="gradient-text">— Software Developer</span>
+                <span className="gradient-text">— Software Engineer</span>
               </span>
             </h1>
 
@@ -75,7 +75,7 @@ export default function Home() {
             {/* Text */}
             <div>
               <div className="inline-block px-3 py-1 rounded-full bg-surface-container mb-5">
-                <span className="text-[0.6875rem] uppercase tracking-[0.1em] font-label text-primary font-bold">
+                <span className="text-[0.6875rem] uppercase tracking-widest font-label text-primary font-bold">
                   Specializing in Next.js &amp; Scalable Architecture
                 </span>
               </div>
@@ -104,7 +104,7 @@ export default function Home() {
             <div className="flex flex-col gap-10">
               {skills.map((group) => (
                 <div key={group.category}>
-                  <h3 className="text-[0.6875rem] uppercase tracking-[0.1em] font-label text-on-surface-variant font-bold mb-5">
+                  <h3 className="text-[0.6875rem] uppercase tracking-widest font-label text-on-surface-variant font-bold mb-5">
                     {group.category}
                   </h3>
                   <div className="flex flex-col gap-4">
@@ -136,7 +136,7 @@ export default function Home() {
           <section className="py-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <div className="inline-block px-3 py-1 rounded-full bg-surface-container mb-6">
-                <span className="text-[0.6875rem] uppercase tracking-[0.1em] font-label text-primary font-bold">
+                <span className="text-[0.6875rem] uppercase tracking-widest font-label text-primary font-bold">
                   Featured Project
                 </span>
               </div>
@@ -300,7 +300,7 @@ export default function Home() {
               {/* Latest work */}
               {latestJob && (
                 <div className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
-                  <span className="text-[0.6875rem] uppercase tracking-[0.1em] font-label text-primary font-bold">
+                  <span className="text-[0.6875rem] uppercase tracking-widest font-label text-primary font-bold">
                     Work
                   </span>
                   <h3 className="font-headline font-bold text-on-surface text-lg mt-2 mb-1 tracking-tight">
@@ -313,7 +313,7 @@ export default function Home() {
               {/* Latest education */}
               {latestEdu && (
                 <div className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
-                  <span className="text-[0.6875rem] uppercase tracking-[0.1em] font-label text-tertiary font-bold">
+                  <span className="text-[0.6875rem] uppercase tracking-widest font-label text-tertiary font-bold">
                     Education
                   </span>
                   <h3 className="font-headline font-bold text-on-surface text-lg mt-2 mb-1 tracking-tight">
